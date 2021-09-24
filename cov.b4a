@@ -1,0 +1,175 @@
+﻿Build1=Default,b4a.example.cov
+File1=chart.bal
+File10=logo1.png
+File11=main.bal
+File12=tcov.bal
+File13=viewMap.bal
+File14=wcov.bal
+File2=click.mp3
+File3=full_data.csv
+File4=graph.bal
+File5=ic_cached_white_24dp.png
+File6=ic_done_white_24dp.png
+File7=intro.mp3
+File8=logo.jpg
+File9=logo.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=core
+Library10=advancedwebview
+Library11=phone
+Library12=firebaseadmob
+Library13=animation
+Library2=okhttputils2
+Library3=json
+Library4=xchart
+Library5=b4xcollections
+Library6=b4xtable
+Library7=xui views
+Library8=tts
+Library9=icostexttospeech
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~SetApplicationAttribute(android:theme, "@style/LightTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#ff039be5</color>~\n~	<color name="statusbar">#ff006db3</color>~\n~	<color name="textColorPrimary">#ffffffff</color>~\n~	<color name="navigationBar">#ff006db3</color>~\n~</resources>~\n~)~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Material.Light">~\n~		 <item name="android:colorPrimary">@color/actionbar</item>~\n~		 <item name="android:colorPrimaryDark">@color/statusbar</item>~\n~		 <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~		 <item name="android:navigationBarColor">@color/navigationBar</item>~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">~\n~		<item name="android:actionBarStyle">@style/CustomActionBarStyle</item>~\n~    </style>~\n~	<style name="CustomActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">~\n~	    <item name="android:background">@color/actionbar</item>~\n~	</style>~\n~</resources>~\n~)~\n~AddReplacement($ADMOB_APP_ID$, ca-app-pub-5841631477712270/8298520909)~\n~
+Module1=ccov
+Module2=CSVParser
+Module3=dohmap
+Module4=Intro
+Module5=ranking
+Module6=SharedMain
+Module7=SlideMenu
+Module8=Starter
+Module9=wcov
+NumberOfFiles=14
+NumberOfLibraries=13
+NumberOfModules=9
+Version=9.85
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Covid-19 Tracker
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: false
+	#IncludeTitle: true
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	
+	Public x1, x2, x3 As String
+	Public clicksound As MediaPlayer
+	
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Private sm As SharedMain
+	Public Button1 As Button
+	Public Button2 As Button
+	Public Button3 As Button
+	Public Button4 As Button
+	clicksound.Initialize2("clicksound")
+	clicksound.Load(File.DirAssets, "click.mp3")
+	Dim tts As ICOSTextToSpeech
+	Dim a As String
+	Private ImageView1 As ImageView
+	Private lblSource As Label
+	Private Label7 As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	
+	
+		Activity.LoadLayout("main")
+	
+		Activity.AddMenuItem3("", "refresh", LoadBitmapResize(File.DirAssets, "ic_cached_white_24dp.png", 32dip, 32dip, True), True)
+		Activity.AddMenuItem3("", "done", LoadBitmapResize(File.DirAssets, "ic_done_white_24dp.png", 32dip, 32dip, True), True)
+ 		
+		
+		tts.InitializeTTs("tts")
+		
+
+		tts.Speaking = "Welcome to Covid 19 Tracker. The app is free and created by Engineer Lyndon R Bermoy of Philippine Science High School Caraga Region Campus Butuan City"
+		ToastMessageShow("The app is free and created by Engr.Lyndon R. Bermoy of PSHS-CRC, Butuan City", True)
+	
+
+		
+		
+End Sub
+
+Sub Activity_Resume
+	
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+Sub Button1_Click
+	StartActivity(wcov)
+	clicksound.Play
+End Sub
+
+Sub Button2_Click
+	StartActivity(ccov)
+	clicksound.Play
+End Sub
+
+Sub Button3_Click
+	'Activity.Finish
+	clicksound.Play
+	sm.Initialize(Activity)
+	Button1.visible = False
+	Button2.visible = False
+	Button3.visible = False
+	Button4.visible = False
+	Label7.Visible = False
+	lblSource.Visible = False
+	
+	
+End Sub
+Sub Button4_Click
+	StartActivity(dohmap)
+	clicksound.Play
+End Sub
+Sub TTsCompleted
+	ToastMessageShow("Events Fired",True)
+End Sub
+
+Sub TTsReady (Success As Boolean)
+
+	If (Success) Then
+		ToastMessageShow("TTS is Ready",False)
+	Else
+		ToastMessageShow("TTS is not Ready",False)
+	End If
+	
+End Sub
+
+
+Sub ImageView1_Click
+	'TTS.Speaks = "Welcome to Covid 19 Tracker. The app is free and created by Engr.Lyndon R. Bermoy of Philippine Science High School Caraga Region Campus"
+'	TTsReady(True)
+	tts.Speaking = "Welcome to Covid 19 Tracker. The app is free and created by Engineer Lyndon R Bermoy of Philippine Science High School Caraga Region Campus"
+End Sub
